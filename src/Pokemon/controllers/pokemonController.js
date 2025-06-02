@@ -1,8 +1,8 @@
-const axios = require('axios');
+
 const Constans = require('../suppors/constans');
 const ServiceSupport = require('../suppors/serviceSupport');
 
-axios.defaults.timeout = 10000;
+
 
 
 module.exports.pokemon = async (event) => {
