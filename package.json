@@ -16,8 +16,7 @@
     "axios": "^1.9.0"
   },
   "devDependencies": {
-    "nodemon": "^2.0.20",
     "serverless": "^3.38.0",
-    "serverless-offline": "^11.2.0"
+    "serverless-offline": "^13.3.3"
   }
 }
