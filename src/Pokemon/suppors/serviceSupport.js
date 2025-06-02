@@ -1,5 +1,6 @@
+const axios = require('axios');
 const Constans = require('../suppors/constans');
-
+axios.defaults.timeout = 10000;
 module.exports = {
     getGenerationByID(pokemonID) {
         const generationRanges = [
@@ -31,9 +32,9 @@ module.exports = {
 
     async getPokemonList(page = 1) {
         try {
-            const offset = (page - 1) * PAGE_SIZE;
+            const offset = (page - 1) * Constans.PAGE_SIZE;
             const response = await axios.get(`${Constans.POKEAPI_URL}/pokemon`, {
-                params: { limit: PAGE_SIZE, offset }
+                params: { limit: Constans.PAGE_SIZE, offset }
             });
             return {
                 results: response.data.results,
@@ -57,7 +58,7 @@ module.exports = {
 
             let evolutionPhase = 1;
             try {
-                const speciesData = await axios.get(`${POKEAPI_URL}/pokemon-species/${pokemon.name}`);
+                const speciesData = await axios.get(`${Constans.POKEAPI_URL}/pokemon-species/${pokemon.name}`);
                 if (speciesData.data.evolves_from_species) {
                     evolutionPhase = 2;
                 }
