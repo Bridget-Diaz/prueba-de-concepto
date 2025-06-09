@@ -24,3 +24,33 @@ functions:
                 evolutionPhase: false
                 generation: false
                 page: false
+  # ─── NUEVAS LAMBDAS PARA PRODUCTOS ────────────────────────────────
+  createProduct:
+    handler: src/Producto/createProduct.handler
+    events:
+      - http:
+          path: productos
+          method: post
+          cors: true
+    environment:
+      TABLE_PRODUCTO: UE2DESADYNPRODUCTO001
+
+  updateProduct:
+    handler: src/Producto/updateProduct.handler
+    events:
+      - http:
+          path: productos/{id}
+          method: patch
+          cors: true
+    environment:
+      TABLE_PRODUCTO: UE2DESADYNPRODUCTO001
+
+  getProducts:
+    handler: src/Producto/getProducts.handler
+    events:
+      - http:
+          path: productos
+          method: get
+          cors: true
+    environment:
+      TABLE_PRODUCTO: UE2DESADYNPRODUCTO001
