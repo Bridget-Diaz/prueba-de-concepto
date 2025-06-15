@@ -4,7 +4,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "jest",
+    "test:watch": "jest --watch",
+    "coverage": "jest --coverage",
     "deploy": "serverless deploy --stage dev --region us-east-2",
     "start": "serverless offline --stage dev --region us-east-2"
   },
@@ -12,14 +14,18 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "@aws-sdk/client-dynamodb": "^3.826.0",
-    "@aws-sdk/client-sqs": "^3.826.0",
     "@aws-sdk/lib-dynamodb": "^3.826.0",
     "aws-sdk": "^2.1241.0",
-    "axios": "^1.9.0"
+    "axios": "^1.9.0",
+    "uuid": "^11.1.0"
   },
   "devDependencies": {
+    "@aws-sdk/client-dynamodb": "^3.828.0",
+    "@aws-sdk/client-sqs": "^3.828.0",
+    "@aws-sdk/util-dynamodb": "^3.828.0",
+    "jest": "^29.0.0",
     "serverless": "^3.38.0",
-    "serverless-offline": "^13.3.3"
+    "serverless-offline": "^13.3.3",
+    "sinon": "^21.0.0"
   }
 }

@@ -6,6 +6,29 @@ provider:
   runtime: nodejs20.x
   timeout: 60
   region: us-east-2
+  # ─── NUEVAS PARA PRODUCTOS ────────────────────────────────
+  iam:
+    role:
+      statements:
+        - Effect: Allow
+          Action:
+            - dynamodb:PutItem
+            - dynamodb:UpdateItem
+            - dynamodb:Scan
+          Resource: "arn:aws:dynamodb:us-east-2:*:table/UE2DESADYNPRODUCTO001"
+        - Effect: Allow
+          Action:
+            - sqs:SendMessage
+          Resource:
+            - Fn::GetAtt: [ProductQueue, Arn]
+
+resources:
+  Resources:
+    ProductQueue:
+      Type: AWS::SQS::Queue
+      Properties:
+        QueueName: "ProductQueue"
+        VisibilityTimeout: 30
 
 plugins:
   - serverless-offline
@@ -34,6 +57,7 @@ functions:
           cors: true
     environment:
       TABLE_PRODUCTO: UE2DESADYNPRODUCTO001
+      SQS_QUEUE_URL: !Ref ProductQueue
 
   updateProduct:
     handler: src/Producto/updateProduct.handler
